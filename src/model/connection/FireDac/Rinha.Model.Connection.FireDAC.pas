@@ -25,7 +25,7 @@ uses
   FireDAC.Stan.Param,
   FireDAC.Stan.Pool,
   FireDAC.UI.Intf,
-
+  DataSet.Serialize.Config,
   Rinha.Model.Connection.Interfaces,
   Rinha.Model.Log,
   Rinha.Model.Log.Interfaces,
@@ -44,6 +44,7 @@ type
     FSettings: iModelUtilsSettings;
     FLog : iModelLog;
     FDriverLinkFB : TFDPhysPgDriverLink;
+    procedure SetDataSetSerialize;
   public
     constructor Create;
     destructor Destroy; override;
@@ -78,6 +79,7 @@ begin
     Params.Add('CharacterSet=' + 'win1252'); // character padrao do banco
 
     try
+      SetDataSetSerialize;
       FConnection.Connected := True;
       Result := FConnection;
     except
@@ -98,11 +100,11 @@ begin
 
   FDriverLinkFB := TFDPhysPgDriverLink.Create(nil);
   {$IFDEF WIN32}
-   FDriverLinkFB.VendorLib := FPath + '..\dlls\x32\fbclient.dll';
+   FDriverLinkFB.VendorLib := FPath + '..\dlls\x32\libpq.dll';
   {$ELSEIF DEFINED(WIN64)}
-   FDriverLinkFB.VendorLib := FPath + '..\dlls\x64\fbclient.dll';
+   FDriverLinkFB.VendorLib := FPath + '..\dlls\x64\libpq.dll';
   {$ELSEIF DEFINED(LINUX64)}
-   FDriverLinkFB.VendorLib := FPath + '..\dlls\x64\fbclient.dll';
+   FDriverLinkFB.VendorLib := FPath + '..\dlls\x64\libpq.dll';
   {$ENDIF$}
   FDriverLinkFB.Release;
 end;
@@ -131,7 +133,7 @@ var
   IndexConn: integer;
 begin
   Result := -1;
-
+  FSettings.LoadingSettings;
   if not Assigned(FConnList) then
     FConnList := TObjectList<TFDConnection>.Create(False);
 
@@ -149,6 +151,7 @@ begin
     Params.Add('port=' + FSettings.Params.Port); // porta da concexao remota
     Params.Add('CharacterSet=' + 'win1252'); // character padrao do banco
     try
+      SetDataSetSerialize;
       Connected := True;
       Result := IndexConn;
     except
@@ -165,6 +168,12 @@ end;
 class function TModelConnectionFireDac.New: iModelConnection;
 begin
   Result := Self.Create;
+end;
+
+procedure TModelConnectionFireDac.SetDataSetSerialize;
+begin
+  TDataSetSerializeConfig.GetInstance.CaseNameDefinition      := cndNone;
+  TDataSetSerializeConfig.GetInstance.Import.DecimalSeparator := '.';
 end;
 
 end.

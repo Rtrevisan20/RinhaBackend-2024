@@ -16,7 +16,7 @@ type
 
   iModelConnectionQuery = interface
     ['{4A49C2B3-BACB-4D99-853A-853166EF7BE4}']
-    function OpenSQl ( aSQL : String ) : iModelConnectionQuery;
+    function OpenSQL ( aSQL : String ) : iModelConnectionQuery;
     function ExecuteSQL ( aSQL : String ) : iModelConnectionQuery;
     function OpenTable  ( aTable : String ) : iModelConnectionQuery;
     function DataSet : TDataSet;

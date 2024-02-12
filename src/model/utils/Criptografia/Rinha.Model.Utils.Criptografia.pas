@@ -3,6 +3,8 @@ unit Rinha.Model.Utils.Criptografia;
 interface
 
 uses
+  System.SysUtils,
+  System.Classes,
   Rinha.Model.Utils.Criptografia.Interfaces;
 
 type
@@ -18,7 +20,7 @@ type
   end;
 
 const
-  Key = 8;
+  Key = 6;
 
 implementation
 
@@ -26,13 +28,13 @@ implementation
 
 function TModelUtilsCryptography.AsciiToInt(aCaracter: Char): integer;
 var
-  i: integer;
+  i:integer;
 begin
   i := 0;
   while i < 255 do
   begin
     if Chr(i) = aCaracter then
-      Break;
+    Break;
     i := i + 1;
   end;
   Result := i;
@@ -46,18 +48,18 @@ end;
 function TModelUtilsCryptography.Decrypt(aValue: String): String;
 var
   aCont: integer;
-  aReturn: string;
+  aRetorno: string;
 begin
   if aValue = '' then
   begin
     Result := aValue;
   end else
   begin
-    aReturn := '';
+    aRetorno := '';
     for aCont := 1 to Length(aValue) do
-    aReturn := aReturn + Chr(AsciiToInt(aValue[aCont])-Key);
+     aRetorno := aRetorno + Chr(AsciiToInt(aValue[aCont])-Key);
   end;
-  Result := aReturn;
+  Result := aRetorno;
 end;
 
 destructor TModelUtilsCryptography.Destroy;
@@ -69,7 +71,7 @@ end;
 function TModelUtilsCryptography.Encrypt(aValue: String): String;
 var
   aCont: integer;
-  aReturn: string;
+  aRetorno: string;
 begin
   if aValue = '' then
   begin
@@ -77,11 +79,11 @@ begin
   end
   else
   begin
-    aReturn := '';
+    aRetorno := '';
     for aCont := 1 to Length(aValue) do
-      aReturn := aReturn + Chr(AsciiToInt(aValue[aCont]) + Key);
+      aRetorno := aRetorno + Chr(AsciiToInt(aValue[aCont])+Key);
   end;
-  Result := aReturn;
+  Result := aRetorno;
 end;
 
 class function TModelUtilsCryptography.New: iModelUtilsCryptography;

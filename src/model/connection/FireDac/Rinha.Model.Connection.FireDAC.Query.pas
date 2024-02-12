@@ -44,7 +44,7 @@ type
     constructor Create;
     destructor Destroy; override;
     class function New: iModelConnectionQuery;
-    function OpenSQl(aSQL: String): iModelConnectionQuery;
+    function OpenSQL(aSQL: String): iModelConnectionQuery;
     function ExecuteSQL(aSQL: String): iModelConnectionQuery;
     function OpenTable(aTable: String): iModelConnectionQuery;
     function DataSet: TDataSet;
@@ -63,10 +63,11 @@ begin
   if not Assigned(FDataSet) then
      FDataSet := FQuery;
 
+  if not Assigned(FConnection) then
   FConnection := TModelConnectionFireDAC.New;
+
   FIndexConn := FConnection.IdConnection;
   FQuery.Connection := TFDConnection(FConnection.GetConnection(FIndexConn));
-
 end;
 
 function TModelConnectionFireDacQuery.DataSet: TDataSet;
