@@ -152,6 +152,7 @@
         <DCCReference Include="src\model\utils\log\Rinha.Model.Log.Interfaces.pas"/>
         <DCCReference Include="src\model\utils\log\Rinha.Model.Log.pas"/>
         <DCCReference Include="src\controller\Rinha.Controller.pas"/>
+        <DCCReference Include="src\model\entidades\Rinha.Model.Entidades.Clientes.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -199,13 +200,13 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Win64\Debug\RinhaBackend.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Win64\RinhaBackend.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win64">
                         <RemoteName>RinhaBackend.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Win64\Debug\RinhaBackend.rsm" Configuration="Debug" Class="DebugSymbols">
+                <DeployFile LocalName="Win64\RinhaBackend.rsm" Configuration="Debug" Class="DebugSymbols">
                     <Platform Name="Win64">
                         <RemoteName>RinhaBackend.rsm</RemoteName>
                         <Overwrite>true</Overwrite>

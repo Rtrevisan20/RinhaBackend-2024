@@ -29,7 +29,7 @@ implementation
 
 constructor TModelLog.Create;
 begin
-  FPath := ExtractFilePath(ParamStr(0)) + 'ServerLog.log';
+  FPath := ExtractFilePath(ParamStr(0)) + 'RinhaLog.log';
   SetLog;
 end;
 

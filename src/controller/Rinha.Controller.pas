@@ -4,32 +4,29 @@ interface
 
 uses
   Horse,
-
-  Rinha.Model.Connection.Factory,
-  Rinha.Model.Connection.Interfaces,
-  DataSet.Serialize,
-  System.JSON,
-  System.SysUtils;
+  System.SysUtils,
+  Rinha.Model.Entidades.Clientes;
 
 procedure RegistrarRotas;
-procedure Extrato(Req: THorseRequest; Res: THorseResponse; Next : TProc);
+procedure ListarClientes(Req: THorseRequest; Res: THorseResponse; Next : TProc);
 
 implementation
 
 procedure RegistrarRotas;
 begin
-  THorse.Get('/clientes', Extrato);
+  THorse.Get('/clientes', ListarClientes);
 end;
 
-procedure Extrato(Req: THorseRequest; Res: THorseResponse; Next : TProc);
-var
- Query : iModelConnectionQuery;
+procedure ListarClientes(Req: THorseRequest; Res: THorseResponse; Next : TProc);
 begin
-  Query := TModelConnectionFactory.New.Query;
+  var Cliente :=  TModelEntidadeCliente.Create;
+  try
+    Res.Send(Cliente.Listar).Status(200);  
+  finally
+    FreeAndNil(Cliente);
+  end;
 
-  Query.OpenSQL('select * from clientes order by id');
-
-  Res.Send(Query.DataSet.ToJSONArray).Status(200);
 end;
 
 end.
+

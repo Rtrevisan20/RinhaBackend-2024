@@ -18,14 +18,14 @@ uses
   Rinha.Model.Utils.Criptografia in 'src\model\utils\Criptografia\Rinha.Model.Utils.Criptografia.pas',
   Rinha.Model.Log.Interfaces in 'src\model\utils\log\Rinha.Model.Log.Interfaces.pas',
   Rinha.Model.Log in 'src\model\utils\log\Rinha.Model.Log.pas',
-  Rinha.Controller in 'src\controller\Rinha.Controller.pas';
+  Rinha.Controller in 'src\controller\Rinha.Controller.pas',
+  Rinha.Model.Entidades.Clientes in 'src\model\entidades\Rinha.Model.Entidades.Clientes.pas';
 
 begin
   THorse.Use(Jhonson);
   THorse.Use(Cors);
 
   Rinha.Controller.RegistrarRotas;
-
 
   THorse.Listen(9000);
 end.

@@ -85,8 +85,8 @@ begin
     except
       on E: Exception do
       begin
-       FLog.LogMensage(FormatDateTime('dd/mm/YY hh:nn:ss - ', Now) + e.Message).SalvarLog;
-       Abort;
+       FLog.LogMensage(e.Message).SalvarLog;
+       raise Exception.Create(e.Message);
       end;
     end;
   end;
@@ -157,8 +157,8 @@ begin
     except
       on E: Exception do
       begin
-        FLog.LogMensage(FormatDateTime('dd/mm/YY hh:nn:ss - ', Now)+e.Message).SalvarLog;
-        Abort;
+        FLog.LogMensage(e.Message).SalvarLog;
+        raise Exception.Create(e.Message);
       end;
     end;
   end;
