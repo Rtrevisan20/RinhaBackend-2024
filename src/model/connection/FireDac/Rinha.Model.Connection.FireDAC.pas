@@ -65,7 +65,7 @@ implementation
 function TModelConnectionFireDac.Connection: TCustomConnection;
 begin
   FConnection := TFDConnection.Create(nil);
-  Result := FConnection;
+//  Result := FConnection;
   with FConnection do
   begin
     Params.Clear;
@@ -106,7 +106,7 @@ begin
   {$ELSEIF DEFINED(LINUX64)}
    FDriverLinkFB.VendorLib := FPath + '..\dlls\x64\libpq.dll';
   {$ENDIF$}
-  FDriverLinkFB.Release;
+//  FDriverLinkFB.Release;
 end;
 
 destructor TModelConnectionFireDac.Destroy;
@@ -132,8 +132,9 @@ function TModelConnectionFireDac.IdConnection: integer;
 var
   IndexConn: integer;
 begin
-  Result := -1;
+//  Result := -1;
   FSettings.LoadingSettings;
+
   if not Assigned(FConnList) then
     FConnList := TObjectList<TFDConnection>.Create(False);
 

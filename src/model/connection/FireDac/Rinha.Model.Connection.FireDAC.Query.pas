@@ -64,7 +64,7 @@ begin
      FDataSet := FQuery;
 
   if not Assigned(FConnection) then
-  FConnection := TModelConnectionFireDAC.New;
+    FConnection := TModelConnectionFireDAC.New;
 
   FIndexConn := FConnection.IdConnection;
   FQuery.Connection := TFDConnection(FConnection.GetConnection(FIndexConn));

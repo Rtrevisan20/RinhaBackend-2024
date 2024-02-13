@@ -19,7 +19,7 @@ uses
   Rinha.Model.Log.Interfaces in 'src\model\utils\log\Rinha.Model.Log.Interfaces.pas',
   Rinha.Model.Log in 'src\model\utils\log\Rinha.Model.Log.pas',
   Rinha.Controller in 'src\controller\Rinha.Controller.pas',
-  Rinha.Model.Entidades.Clientes in 'src\model\entidades\Rinha.Model.Entidades.Clientes.pas';
+  Rinha.Controller.Rotas in 'src\controller\Rinha.Controller.Rotas.pas';
 
 begin
   THorse.Use(Jhonson);
