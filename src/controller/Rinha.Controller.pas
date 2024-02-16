@@ -4,9 +4,11 @@ interface
 
 uses
   Horse,
-  System.SysUtils,
+
+  Rinha.Controller.Rotas,
+
   System.JSON,
-  Rinha.Controller.Rotas;
+  System.SysUtils;
 
 procedure RegistrarRotas;
 procedure Extrato(Req: THorseRequest; Res: THorseResponse; Next : TProc);
@@ -33,21 +35,13 @@ end;
 procedure Transacoes(Req: THorseRequest; Res: THorseResponse; Next : TProc);
 begin
   var aExtrato :=  TControllerRotas.Create;
-  var aBody := req.Body<TJSONObject>;
+  var aBody    := req.Body<TJSONObject>;
   try
-    try
-     var aID        := req.Params['id'].ToInt64;
-     var aValor     := aBody.GetValue<integer>('valor', 0);
-     if aValor < 0 then
-      begin
-        raise Exception.Create('O valor não pode ser menor que 0');
-      end;
-     var aTipo      := aBody.GetValue<string>('tipo', '');
-     var aDescricao := aBody.GetValue<string>('descricao', '');
-     Res.Send(aExtrato.InsertTransacao(aID,aValor,aTipo,aDescricao)).Status(200);
-    except on E: Exception do
-     Res.Send(E.Message).Status(500);
-    end;
+   var aID        := req.Params['id'].ToInt64;
+   var aValor     := aBody.GetValue<integer>('valor', 0);
+   var aTipo      := aBody.GetValue<string>('tipo', '');
+   var aDescricao := aBody.GetValue<string>('descricao', '');
+   Res.Send(aExtrato.InsertTransacao(aID,aValor,aTipo,aDescricao)).Status(200);
   finally
     FreeAndNil(aExtrato);
   end;

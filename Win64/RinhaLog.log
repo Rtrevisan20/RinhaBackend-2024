@@ -32,3 +32,9 @@ No operator matches the given name and argument types. You might need to add exp
 No operator matches the given name and argument types. You might need to add explicit type casts.
 13/02/2024 15:27:10 Erro: [FireDAC][Phys][PG][libpq] ERRO: operador não existe: character varying = integer.
 No operator matches the given name and argument types. You might need to add explicit type casts.
+15/02/2024 14:59:52 Erro: Cliente não cadastrado!
+15/02/2024 15:08:51 Erro: Cliente não cadastrado!
+15/02/2024 15:12:42 Erro: Cliente não cadastrado!
+15/02/2024 15:12:45 Erro: Cliente não cadastrado!
+15/02/2024 15:27:55 Erro: Cliente não cadastrado!
+15/02/2024 15:30:28 Erro: Cliente não cadastrado!

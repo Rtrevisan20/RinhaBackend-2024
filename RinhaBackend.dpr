@@ -7,6 +7,7 @@ uses
   Horse,
   Horse.Jhonson,
   Horse.CORS,
+  Horse.HandleException,
   Rinha.Model.Connection.Factory in 'src\model\connection\Rinha.Model.Connection.Factory.pas',
   Rinha.Model.Connection.Interfaces in 'src\model\connection\Rinha.Model.Connection.Interfaces.pas',
   Rinha.Model.Connection.FireDAC in 'src\model\connection\FireDac\Rinha.Model.Connection.FireDAC.pas',
@@ -22,8 +23,10 @@ uses
   Rinha.Controller.Rotas in 'src\controller\Rinha.Controller.Rotas.pas';
 
 begin
-  THorse.Use(Jhonson);
-  THorse.Use(Cors);
+  THorse
+   .Use(Cors)
+   .Use(Jhonson)
+   .Use(HandleException);
 
   Rinha.Controller.RegistrarRotas;
 
